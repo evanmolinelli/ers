@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Create Reimbursemnt</title>
+<style type="text/css">
+.form-group {
+	margin-left: 25px;
+	clear: both;
+	width: 250px;
+}
+
+.form-group input {
+	width: 100%;
+}
+</style>
+</head>
+<center>
+	<div id="centerwrap">
+		<h3>Reimbursement Request</h3>
+		<form ng-submit="addReimbursement()">
+			<!-- don't submit or refresh -->
+			<div class="form-group">
+				<label>Amount:</label> <input type="text" id="createAmt" ng-model="newReimb.reimbAmt">
+			</div>
+			<div class="form-group">
+				<label>Description:</label> <input type="text" id="createDescr" ng-model="newReimb.reimbDescr">
+			</div>
+
+			<div class="form-group">
+				<label>Type:</label><select type="dropdown" ng-model="newReimb.reimbType">Type:
+					<option>Lodging</option>
+					<option>Travel</option>
+					<option>Food</option>
+					<option>Other</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<input class="btn btn-lg btn-success" type="submit" value="Create" onclick="return checkTextField(this)">
+			</div>
+		</form>
+	</div>
+</center>
+</html>

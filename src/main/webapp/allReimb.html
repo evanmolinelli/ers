@@ -1,0 +1,34 @@
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel-body">
+				<h3>All Reimbursements</h3>
+				<table class="table table-hover table-striped table-bordered">
+					<thead>
+						<tr>
+							<th>Update</th>
+							<th>Name</th>
+							<th>Amount</th>
+							<th>Time Submitted</th>
+							<th>Description</th>
+							<th>Status</th>
+							<th>Type</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr align="LEFT" ng-repeat="reimbursement in reimbursements track by $index">
+							<td><button type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-cog"></span></button></td>
+							<td>{{reimbursement.fullName}}</td>
+							<td>{{reimbursement.reimbAmt}}</td>
+							<td>{{reimbursement.reimbSubmitted | date: 'MM/dd/yyyy'}}</td>
+							<td>{{reimbursement.reimbDescr}}</td>
+							<td>{{reimbursement.reimbStatus}}</td>
+							<td>{{reimbursement.reimbType}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

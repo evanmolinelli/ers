@@ -1,0 +1,35 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel-body">
+				<h3>Manager Page</h3>
+				<table class="table table-hover table-striped table-bordered">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Amount</th>
+							<th>Time Submitted</th>
+							<th>Description</th>
+							<th>Status</th>
+							<th>Type</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr align="LEFT" ng-repeat="reimbursement in reimbursements track by $index">
+							<td>{{reimbursement.fullName}}</td>
+							<td>{{reimbursement.reimbAmt}}</td>
+							<td>{{reimbursement.reimbSubmitted | date: 'MM/dd/yyyy'}}</td>
+							<td>{{reimbursement.reimbDescr}}</td>
+							<td>{{reimbursement.reimbStatus}}</td>
+							<td>{{reimbursement.reimbType}}</td>
+							<td><button type="button" class="btn btn-default btn-med" style="color:green" ng-click="accept($index)">
+							<span class="glyphicon glyphicon-ok"></span></button>
+							<button type="button" class="btn btn-default btn-med" style="color:red" ng-click="deny($index)">
+							<span class="glyphicon glyphicon-remove"></span></button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
