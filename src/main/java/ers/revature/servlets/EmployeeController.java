@@ -70,6 +70,7 @@ public class EmployeeController {
 //				reimb.get(i).setFullName(bean.getFirstName() + " " + bean.getLastName());
 //			}
 			// write the JSON data to the HTTP response
+			System.out.print(reimb.toString());
 			new ObjectMapper().writeValue(resp.getWriter(), reimb);
 			
 		}
@@ -107,10 +108,11 @@ public class EmployeeController {
 	
 	public void managerTable(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
-
-		if (req.getSession().getAttribute("userLoggedIn") == null) {
-			System.out.println("not working guy 2.");
-			resp.sendRedirect("login.html");
+		Users user = (Users) req.getSession().getAttribute("userLoggedIn");
+		System.out.print(user.toString());
+		if (req.getSession().getAttribute("userLoggedIn") == null 
+				|| user.getUserRoleId()==1 ) {
+			resp.sendRedirect("reimburseImage.html");
 		} else {
 			ArrayList<Reimbursement> reimb = new ReimburseDataService().viewReimbursementByStatus("PENDING");
 
@@ -119,6 +121,40 @@ public class EmployeeController {
 		}
 	}
 	
+	public void managerAccept(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException, ServletException {
+		Users user = (Users) req.getSession().getAttribute("userLoggedIn");
+		if (req.getSession().getAttribute("userLoggedIn") == null 
+				|| user.getUserRoleId()==1 ) {
+			resp.sendRedirect("reimburseImage.html");
+		} else {
+			InputStream httpRequestBody = req.getInputStream();
+
+			ObjectMapper mapper = new ObjectMapper();
+			// convert JSON to a Java object
+			Reimbursement bean = mapper.readValue(httpRequestBody, Reimbursement.class);
+//			System.out.println(bean.toString());
+			bean.setReimbStatus("ACCEPTED");
+			new ReimburseDataService().update(bean);
+		}
+	}
+	
+	public void managerDeny(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException, ServletException {
+		Users user = (Users) req.getSession().getAttribute("userLoggedIn");
+		if (req.getSession().getAttribute("userLoggedIn") == null 
+				|| user.getUserRoleId()==1 ) {
+			resp.sendRedirect("reimburseImage.html");
+		} else {
+			InputStream httpRequestBody = req.getInputStream();
+//			System.out.println(httpRequestBody.toString());
+			ObjectMapper mapper = new ObjectMapper();
+			// convert JSON to a Java object
+			Reimbursement bean = mapper.readValue(httpRequestBody, Reimbursement.class);
+			bean.setReimbStatus("DENIED");
+			new ReimburseDataService().update(bean);
+		}
+	}
 }
 class getTime {
 	public static Timestamp getTimestamp() {

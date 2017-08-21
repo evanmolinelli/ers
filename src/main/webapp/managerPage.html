@@ -22,9 +22,9 @@
 							<td>{{reimbursement.reimbDescr}}</td>
 							<td>{{reimbursement.reimbStatus}}</td>
 							<td>{{reimbursement.reimbType}}</td>
-							<td><button type="button" class="btn btn-default btn-med" style="color:green" ng-click="accept($index)">
+							<td><button type="button" class="btn btn-default btn-med" style="color:green" ng-click="accept(reimbursement)">
 							<span class="glyphicon glyphicon-ok"></span></button>
-							<button type="button" class="btn btn-default btn-med" style="color:red" ng-click="deny($index)">
+							<button type="button" class="btn btn-default btn-med" style="color:red" ng-click="deny(reimbursement)">
 							<span class="glyphicon glyphicon-remove"></span></button></td>
 						</tr>
 					</tbody>

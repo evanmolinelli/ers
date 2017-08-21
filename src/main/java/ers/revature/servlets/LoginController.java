@@ -53,6 +53,14 @@ public class LoginController extends HttpServlet {
 			empController.managerTable(req, resp);
 			break;
 		}
+		case "/ers1/manageAccept.do":{
+			empController.managerAccept(req, resp);
+			break;
+		}
+		case "/ers1/managerDeny.do":{
+			empController.managerDeny(req, resp);
+			break;
+		}
 		default: {
 			throw new IllegalArgumentException("Invalid URI");
 		}

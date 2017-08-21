@@ -25,7 +25,8 @@ app.controller("viewAllReimbCtrl", function($scope, $http) {
 		url : "allReimb.do"
 	}).then(function(response) {
 		if (response.status == 200) {
-			$scope.reimbursements = response.data;
+			$scope.reimbursements = response.data; 
+			
 		} else {
 			console.log("No user logged in.");
 		}
@@ -55,7 +56,6 @@ app.controller("createReimbCtrl", function($scope, $http) {
 		}).then(function(response) {
 			if (response.status == 200) {
 				$scope.newReimb = response.data;
-				window.alert("C'mon guy!");
 			} else {
 				console.log("No user logged in.");
 			}
@@ -74,6 +74,37 @@ app.controller("managerCtrl", function($scope, $http) {
 			console.log("No user logged in.");
 		}
 	});
+	
+	$scope.accept = function(reimbursement){
+		console.log(reimbursement);
+		$http({
+			method : "POST",
+			url : "manageAccept.do",
+			data : reimbursement
+		}).then(function(response) {
+			if (response.status == 200) {
+				console.log(response);
+				location.reload();
+			} else {
+				console.log("No user logged in.");
+			}
+		});
+	}
+	
+	$scope.deny = function(reimbursement){
+		$http({
+			method : "POST",
+			url : "managerDeny.do",
+			data : reimbursement
+		}).then(function(response) {
+			if (response.status == 200) {
+				console.log(response);
+				location.reload();
+			} else {
+				console.log("No user logged in.");
+			}
+		});
+	}
 });
 
 function checkTextField(field) {

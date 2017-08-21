@@ -6,7 +6,7 @@ import java.sql.Blob;
 public class Reimbursement {
 
 	private int reimbId;
-	private int reimbAmt;
+	private double reimbAmt;
 	private Timestamp reimbSubmitted;
 	private Timestamp reimbResolved;
 	private String reimbDescr;
@@ -22,7 +22,7 @@ public class Reimbursement {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Reimbursement(int reimbId, int reimbAmt, Timestamp reimbSubmitted, Timestamp reimbResolved,
+	public Reimbursement(int reimbId, double reimbAmt, Timestamp reimbSubmitted, Timestamp reimbResolved,
 			String reimbDescr, Blob reimbReciept, Users reimbAuthor, Users reimbResolver, String reimbStatus,
 			String reimbType) {
 		super();
@@ -53,10 +53,10 @@ public class Reimbursement {
 	public void setReimbId(int reimbId) {
 		this.reimbId = reimbId;
 	}
-	public int getReimbAmt() {
+	public double getReimbAmt() {
 		return reimbAmt;
 	}
-	public void setReimbAmt(int reimbAmt) {
+	public void setReimbAmt(double reimbAmt) {
 		this.reimbAmt = reimbAmt;
 	}
 	public Timestamp getReimbSubmitted() {

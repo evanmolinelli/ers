@@ -23,44 +23,40 @@ public class ReimburseDataService {
 		}
 	}
 	
-	public boolean create(Reimbursement reimb){
+	public void create(Reimbursement reimb){
 		boolean result;
 		try {
 			reimbDao.create(reimb);
 			conn.commit();
-			result=true;
+			System.out.print("create/commit went thru.");
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("Didn't work bro.");
+			System.out.println("Create didn't work bro/didn't commit.");
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			result=false;
 		}
-		return result;
 	}
 	
-	public boolean update(Reimbursement reimb){
+	public void update(Reimbursement reimb){
 		boolean result;
 		try {
 			reimbDao.update(reimb);
 			conn.commit();
-			result=true;
+			System.out.print("updated/commit went thru.");
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("Didn't work bro.");
+			System.out.println("Update didn't work bro/didn't commit.");
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			result=false;
 		}
-		return result;
 	}
 			
 			
@@ -101,10 +97,12 @@ public class ReimburseDataService {
 		return result;
 	}
 	
-	public static void main(String[] args) {
-		ReimburseDataService rds = new ReimburseDataService();
-		
-		System.out.println(rds.viewAllReimbursement().toString());
+	public static void main(String[] args) throws SQLException {
+		Connection conn = new ConnectionManager().getConnection();
+		ReimburseDAO rds = new ReimburseDAO(conn);
+		for (Reimbursement reimb : rds.viewAllReimbursement()){
+			System.out.println(reimb.toString());
+		}
 	}
 }
 

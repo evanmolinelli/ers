@@ -18,9 +18,9 @@
 					</thead>
 					<tbody>
 						<tr align="LEFT" ng-repeat="reimbursement in reimbursements track by $index">
-							<td><button type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-cog"></span></button></td>
+						<td><button type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-cog"></span></button></td>
 							<td>{{reimbursement.fullName}}</td>
-							<td>{{reimbursement.reimbAmt}}</td>
+							<td><span id="currency-no-fractions">{{reimbursement.reimbAmt | currency:"$":2}}</span></td>
 							<td>{{reimbursement.reimbSubmitted | date: 'MM/dd/yyyy'}}</td>
 							<td>{{reimbursement.reimbDescr}}</td>
 							<td>{{reimbursement.reimbStatus}}</td>
