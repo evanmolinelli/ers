@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class ConnectionManager {
 
-	private static String url ="jdbc:oracle:thin:@chinook-1701-java.clnm5mhvywb6.us-east-2.rds.amazonaws.com:1521:ORCL";
+	private static String url =System.getenv("DB_URL");
 	private static String user ="ERS";
 	private static String password="PASSWORD123";
 	
